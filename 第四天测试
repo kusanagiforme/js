@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+  <meta charset='utf-8'>
+  <title>个人简历</title>
+  <style>
+    body{
+      font-family: "Microsoft YaHei"
+    }
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  .important,.second,.thired,.forth{
+    width:500px;
+    height:200px;
+    border: 1px solid #D9E0EE;
+    border-top: 3px solid #FF8400;
+    border-bottom:  3px solid #FF8400;
+    margin: 0 200px 0;
+    border-radius: 12px;
+  }
+
+  h2,h3,h4{
+
+    border-bottom: 1px solid #D9E0EE;
+    height:50px;
+    line-height: 50px;
+    font-size: 35px;
+    padding-left: 12px;
+    background-color: #434345;
+  }
+  .important span{
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: normal;
+    padding-left: 12px;
+    background: linear-gradient(top,#434345,#2f3032);
+  }
+  .second span{
+    height:60px;
+    line-height: 60px;
+    font-size: 13px;
+    font-weight:bold;
+    padding-left: 12px;
+    background: linear-gradient(top,#434345,#2f3032);
+  }
+  .thired p{
+    height:55px;
+    line-height: 55px;
+    font-size: 15px;
+    font-weight: normal;
+    padding-left: 12px;
+    background: linear-gradient(top,#434345,#2f3032);
+
+  }
+  .forth{
+    height:80px;
+
+
+  }
+  .forth p{
+    height:25px;
+    line-height: 25px;
+    font-size:20px;
+    position: absolute;
+    color:#f2f2f2;
+    background: linear-gradient(top,#434345,#2f3032);
+  }
+  a:hover{
+    color:red;
+  }
+  </style>
+</head>
+<body>
+  <div class="most">
+    <div class="important">
+      <h2>基础信息</h3>
+        <p><span>名字:</span><span>XX</span></p>
+        <p><span>性别:</span><span>男</span></p>
+        <p><span>年龄:</span><span>Xx</span></p>
+    </div>
+    <div class="second">
+      <h3>学历</h3>
+        <p><span >曾经就读于</span><span>地址位于xxx省xxx市<span></p>
+        <p><span >本科就读于xxx大学</span><span>位于xxx州</span></p>
+        <p><span></span></p>
+    </div>
+    <div class="thired">
+      <h4>技能</h4>
+        <p>熟练使用cad photoshop等制图软件</p>
+        <p>熟练c语言 python语言</p>
+        <p style="font-size:18px">熟练html css制作 javascript语言  了解vue和react等框架</p>
+    </div>
+    <div class="forth">
+      <p><a href="#">个人链接</a></p>
+    </div>
+  </div>
+<body>
