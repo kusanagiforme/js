@@ -1,0 +1,65 @@
+.father1{
+  width:1500px;
+  height:1000px;
+}
+.resume{
+  width:200px;
+  height:1000px;
+  background-color: skyblue;
+  margin-right: 20px;
+  float:left;
+}
+.resume h1{
+  padding-top: 40px;
+  width:100px;
+  height: 50px;
+  margin: auto;
+  padding-left: auto;
+  padding-right: auto;
+  color:white;
+}
+
+}
+.father{
+
+  width:1000px;
+  height:1000px;
+  margin-top: 5px;
+  padding-left: 10px;
+  float:left;
+}
+
+h2,h3,h4,h5,h6{
+  height:30px;
+  line-height: 20px;
+  font-size:20px;
+  font-weight: bold;
+  margin-bottom: -5px;
+}
+body{
+  font-family:"Microsoft YaHei";
+  width: 500px;
+  display:block;
+}
+div{
+  width:2000px;
+}
+.information p{
+   height: 20px;
+   line-height: 20px;
+   float:left;
+   padding-right: 10px;
+}
+.ability,.edu,.exp p {
+  display: block;
+}
+.contact p{
+  display: inline-block;
+  padding-right: 10px;
+}
+div .boldd{
+  font-weight: bold;
+}
+.information{
+  height:80px;
+}

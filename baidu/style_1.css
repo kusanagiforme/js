@@ -1,0 +1,34 @@
+h2,h3,h4,h5,h6{
+  height:30px;
+  line-height: 20px;
+  font-size:20px;
+  font-weight: bold;
+  margin-bottom: -5px;
+}
+body{
+  font-family:"Microsoft YaHei";
+  width: 500px;
+  display:block;
+}
+div{
+  width:2000px;
+}
+.information p{
+   height: 20px;
+   line-height: 20px;
+   display:inline-block;
+   padding-right: 10px;
+}
+.ability,.edu,.exp p {
+  display: block;
+}
+.contact p{
+  display: inline-block;
+  padding-right: 10px;
+}
+div .boldd{
+  font-weight: bold;
+}
+.information{
+  height:80px;
+}
