@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+*{
+	margin:0;
+	padding: 0;
+}
+body{
+	height:100%;
+}
+header{
+	width:100%;
+	background-color: #333333;
+	height: 80px;
+}
+.topper{
+	height:80px;
+	width: 80%;
+	margin:0  auto;
+}
+h1{
+	font-size:30px;
+	float:left;
+	color:white;
+	height:65px;
+	line-height: 65px;
+	margin-left: 5%;
+}
+nav{
+	padding-top: 5px;
+	margin-right: 2%;
+	float:right;
+}
+li{
+	list-style: none;
+}
+nav ul{
+	float:right;
+	margin:5px;
+	color:white;
+}
+nav ul li{
+	float:right;
+	margin:10px;
+}
+/*绿色标签界面*/
+.banner{
+	width:100%;
+	background: #66bc32;
+	height:300px;
+	position: relative
+}
+.imgnav{
+	position: absolute;
+	right:10%;
+	bottom:0;
+	margin:0 10px 10px 0;
+}
+.imgnav ul li{
+	height:20px;
+	float:left;
+	margin: auto 5px;
+	border: 1px solid #000;
+	padding:5px 7px;
+}
+.imgnav ul li:nth-child(3){
+	height: 35px;
+	position:relative;
+	bottom:15px;
+	background-color: white;
+}
+
+/*开始导航栏*/
+.content{
+	height:70px;
+	border-bottom: 1px solid #dddddd;
+}
+.content_1{
+	margin-top: 20px;
+	width:75%;
+	margin:0 auto;
+}
+.content_1 ul{
+	margin-top: 10px;
+}
+.content_1 ul li{
+	height:40px;
+	padding: 14px 31px;
+	border: 1px solid #dddddd;
+	border-radius: 20px 20px 0 0;
+	float:left;
+}
+.content_1 ul li:first-child{
+	border-bottom: white;
+	background: white;
+}
+/*主体部分*/
+.main{
+	text-align:center;
+	width:72%;
+	margin:5px auto 0 auto;
+}
+
+.main_1,.main_2,.main_3{
+	height:184px;
+	margin-top: 10px;
+    display: flex;
+}
+.top{
+    flex: 1;
+    border: 2px #eeeeee solid;
+    padding: 15px;
+    margin: 5px;
+    height: 150px;
+}
+.shit{
+	margin-top: 10px;
+	text-align: center;
+	height: 100px;
+	width:100%;
+	background-color: #666666;
+	font-size: 16px;
+	color:white;
+}
+</style>
+</head>
+<body>
+	<header>
+		<section class="topper" >
+			<h1>logo</h1>
+				<nav>
+					<ul>
+						<li>Github</li>
+						<li>register</li>
+						<li>Login</li>
+					</ul>
+				</nav>
+		</section>
+	</header>
+	<div class="banner">
+		<div class="imgnav">
+			<ul>
+				<li><a herf="#">1</a></li>
+				<li><a herf="#">2</a></li>
+				<li><a herf="#">3</a></li>
+				<li><a herf="#">4</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="content">
+		<div class="content_1">
+			<ul>
+				<li>Home</li>
+				<li>Profile</li>
+				<li>About</li>
+			</ul>
+		</div>
+	</div>
+	<div class="main">
+		<div class="main_1">
+			<div class="top">
+				this is conntent 1
+			</div>
+			<div class="top">
+				content 2
+			</div>
+			<div class="top">
+				content 3
+			</div>
+		</div>
+		<div class="main_2">
+			<div class="top">
+				this is conntent4
+			</div>
+			<div class="top">
+				this is content 5
+			</div>
+			<div class="top">
+				this is conntent 6
+			</div>
+			<div class="top">
+				this is conntent 7
+			</div>
+		</div>
+		<div class="main_3">
+			<div class="top">
+					this is conntent 8
+			</div>
+			<div class="top">
+				this  is content 9
+			</div>
+			<div class="top">
+				this is conntent 10
+			</div>
+		</div>
+	</div>
+ 	<div class="shit">
+		<span>@2018 ife.baidu.com</span>
+	</div>
+</body>
+</html>
