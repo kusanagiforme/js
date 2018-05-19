@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+    .one {
+        margin: auto;
+        padding-bottom: 20px;
+
+    }
+    .one :first-child{
+        font-size: 39px;
+        color:red;
+        font-weight: bold;
+    }
+    .two {
+        margin:auto;
+        border:1px solid greenyellow;
+
+    }
+    .two :first-child{
+        font-size: 39px;
+        color:red;
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body >
+	<div class="one">
+        <p>作业1练习</p>
+		<input id="firstnumber" type="number" value="0" placeholder="第一个数字">
+		<input id="secondnumber" type="number" value="0" placeholder="第二个数字">
+		<input id="jia" type="button" value="加">
+		<input id="jian" type="button" value="减">
+		<input id="cheng" type="button" value="乘">
+		<input id="chu" type="button" value="除">
+		<p id="result">运算结果</p>
+	</div>
+    <div class="two">
+        <p>作业2练习</p>
+        <input id = "99" type = "button" value = "表格">
+        <p >99乘法表</p>
+        <p id ="multiple"></p>
+    </div>
+
+    <script>
+    var result = document.getElementById("result");
+    var add = document.getElementById("jia");
+    var min = document.getElementById("jian");
+    var mult = document.getElementById("cheng");
+    var div = document.getElementById("chu");
+    add.onclick = function(){
+        getanswer(calculator("add"));
+    }
+    min.onclick = function(){
+        getanswer(calculator("min"));
+    }
+    mult.onclick = function(){
+        getanswer(calculator("mult"));
+    }
+    div.onclicn = function(){
+        getanswer(calculator("div"));
+    }
+	function calculator(operator){
+        var value;
+        var firstnumber = document.getElementById("firstnumber").value;
+        var secondnumber = document.getElementById("secondnumber").value;
+        var firstnumber1 = parseInt(firstnumber);
+        var secondnumber2 = parseInt(secondnumber);
+        switch(operator){
+			case"add":
+				value = firstnumber1 + secondnumber2;
+                break;
+			case"min":
+				value = firstnumber1 - secondnumber2;
+                break;
+			case"mult":
+				value = firstnumber1 * secondnumber2;
+                break;
+			case"div":
+				value = firstnumber1 / secondnumber2;
+                break;
+        }
+		return value;
+	}
+    function getanswer(str){
+        alert(arguments[0]);
+        if(str == undefined){
+            result.innerHTML = "运算错误";
+        }
+        else{
+            document.getElementById("result").innerHTML =arguments[0];
+        }
+    }
+
+	//显示时间代码
+	            var HA =new Date().getHours();
+	            if (HA >=0 && HA <= 5){
+	            alert("凌晨好");
+	            }
+	            else if (HA >= 5 && HA <= 12) {
+	            alert("早上好");
+	            }
+	            else if (HA >= 12 && HA <= 18) {
+	            alert("下午好");
+	            }
+	            else if (HA >= 18 && HA <= 21) {
+	            alert("晚上好");
+	            }
+	            else if (HA >= 21 && HA <= 24) {
+	            alert("深夜好");
+	            }
+
+document.getElementById("99").onclick = function(){
+     var table = document.getElementById("multiple");
+            var html = "";
+            html += "<table>";
+            for(var i = 0 ;i <= 9 ; i ++ ){
+                html += "<tr>";
+                for(var j = 1;j <= i ; j++ ){
+                    html += ("<td>");
+                    html += i + "X" + j + "=" + i*j;
+                    html += "</td>";
+                }
+                html += "</tr>";
+            }
+            html += "</table>";
+            table.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
