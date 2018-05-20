@@ -1,0 +1,5 @@
+    今日学习了DOM。
+    DOM是通过把html文档划分为不同的节点来实现对html的读取和操纵的。
+    getElementsByTagName是一种读取元素名的选择器。它返回的值是htmlcollection类型，无法通过使用数组的方式来输出他，它是一种对html结构的动态显示，所以可以通过innerHTML和innerText来输出它内部的内容。这一点和node.list一致，node.list也可以通过使用方括号来访问他的内容。
+    getElemntById是一种通过id名来读取元素名的选择器，他返回的值是第一个被查找到的元素。
+    以上两个方法都有局限性。
