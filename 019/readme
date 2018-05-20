@@ -3,3 +3,6 @@
     getElementsByTagName是一种读取元素名的选择器。它返回的值是htmlcollection类型，无法通过使用数组的方式来输出他，它是一种对html结构的动态显示，所以可以通过innerHTML和innerText来输出它内部的内容。这一点和node.list一致，node.list也可以通过使用方括号来访问他的内容。
     getElemntById是一种通过id名来读取元素名的选择器，他返回的值是第一个被查找到的元素。
     以上两个方法都有局限性。
+    queryselector和queryselectorAll是可以接受Css选择器的强大选择器，queryselector只返回第一个查找到的元素，而queryselectorAll返回的是一个nodelist，
+    对他的操作方式与上述的相同。
+    Node.list接受使用innerHTML和innerText来进行对比和输出，也能用方括号来读取。而上述的4种选择器如果接受的是来自函数的形参时，请注意不要加上双引号。这会使程序认为这是一个字符串，应当在传入参数时加上引号和css选择符。。
