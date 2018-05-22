@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+        select {
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <label>
+        <input id="school" name="status" type="radio">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio">
+        Company
+    </label>
+
+    <select id="school-select">
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">
+        <option>百度</option>
+        <option>爱奇艺</option>
+    </select>
+    <script>
+        var clicked1 = document.getElementById("school");
+        var clicked2 = document.getElementById("company");
+        var school = document.getElementById("school-select");
+        var company = document.getElementById("company-select");
+        var sheet = document.styleSheets[0];
+
+        sheet.insertRule("#school-select{ display = none}",0);
+        sheet.insertRule("#company-select { display=none}",0);
+        //sheets = sheet.cssRules;
+        //rule = sheets[1];
+
+
+        clicked1.onclick = function(){
+            school.style.display = "inline";
+            if (company.style.display == "inline"){
+                company.style.display = "none";
+
+            }
+            console.log(company.style.display);
+            console.log(school.style.display);
+        }
+        clicked2.onclick = function(){
+            company.style.display = "inline";
+            if (school.style.display == "inline"){
+                school.style.display ="none";
+            }
+            console.log(company.style.display);
+            console.log(school.style.display);
+        }
+    </script>
+</body>
+</html>
