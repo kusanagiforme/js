@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<style>
+div{
+	background-image: url(./image/baidu020.jpg);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	width: 480px;
+	height: 480px;
+	margin: 0 auto;
+}
+</style>
+<body>
+<div></div>
+<script>
+	var div = document.querySelector("div");
+	var y = 0;
+	var flag = 1;
+	var timer = setInterval(function(){
+		if(flag ==1){
+			y += 480;
+			if(y >=7680){
+			flag = 0;
+		    }
+		}
+		if(flag == 0){
+			y -= 480;
+			if(y<=0){
+				flag = 1;
+			}
+		}
+		div.style.backgroundPositionY = '-'+y+'px';
+	},1000);
+</script>
+</body>
+</html>
