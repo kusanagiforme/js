@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+
+    </style>
+</head>
+<body>
+	<input id="stack-input" type="text">
+<p id="stack-cont">栈内容：apple-pear</p>
+<button id="push-btn">进栈</button>
+<button id="pop-btn">退栈</button>
+<button id="font-btn">打印栈顶元素内容</button>
+<button id="empty-btn">判断栈是否为空</button>
+
+
+<script>
+var stack = ["apple", "pear"];
+
+var input1= document.getElementById("stack-input");
+var result = document.getElementById("stack-cont");
+var pushbtn = document.getElementById("push-btn");
+var popbtn = document.getElementById("pop-btn");
+var fontbtn = document.getElementById("font-btn");
+var emptybtn = document.getElementById("empty-btn");
+pushbtn.addEventListener("click",function(){test('push')});
+popbtn.addEventListener("click",function(){test('pop')});
+fontbtn.addEventListener("click",function(){test("font")});
+emptybtn.addEventListener("click",function(){test("empty")});
+
+var test = function(mode){
+	var value = input1.value;
+	switch (mode) {
+		case 'push':
+		stack.push(value);
+		var stalist = stack.join('->');
+		result.innerText = stalist;
+		break;
+		case 'pop':
+		stack.pop();
+		var stalist = stack.join("->");
+		result.innerText = stalist;
+		break;
+		case 'font':
+		if(stack.length == 0){
+			console.log("已经输出完毕了!")
+		}
+		else{
+			var stlist = stack[stack.length-1];
+			result.innertext = stlist;
+		}
+		break;
+		case 'empty':
+		if(stack.length == 0){
+			console.log("是的，这是空的");
+		}
+		else{
+			console.log("有内容哦")
+		}
+		break;
+
+
+	}
+}
+
+
+
+
+
+
+</script>
+</body>

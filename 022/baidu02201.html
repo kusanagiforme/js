@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<div>
+    <label>Number A:<input id="radio-a" type="radio" name="math-obj" value="a"></label><input id="num-a" type="text">
+    <label>Number B:<input id="radio-b" type="radio" name="math-obj" value="b"></label><input id="num-b" type="text">
+</div>
+<div>
+    <button>判断当前选中的输入框输入内容是否为数字</button>
+    <button>把 A 四舍五入为 B 个小数位数的数字</button>
+    <button>当前选中数字的绝对值</button>
+    <button>对当前选中的数字进行上舍入</button>
+    <button>对当前选中的数字进行下舍入</button>
+    <button>把当前选中的数字四舍五入为最接近的整数</button>
+    <button>返回 A 和 B 中的最高值</button>
+    <button>返回 A 和 B 中的最低值</button>
+</div>
+<p id="result"></p>
+<script>
+    var labels1 = document.getElementById("radio-a");
+    var labels2 = document.getElementById("radio-b");
+    var input1 = document.getElementById("num-a");
+    var input2 = document.getElementById("num-b");
+    var list = document.querySelectorAll("button");
+    var result = document.getElementById("result");
+//集中定义函数
+
+
+
+
+
+        list[0].onclick = function() {
+                var text = choosenumber();
+                    if (!checkedNumber(text)) {
+                        result.innerText = '输入的内容必须是数字'
+                    }
+                    else {
+                        result.innerText = text
+                    }
+            }
+        /*list[0].onclick = function(){
+            if( labels1.checked|| labels2.checked){
+                if(labels1.checked){
+                    text = input1.value;
+                }
+            if(labels2.checked){
+                text = input2.value;
+            }
+                if(checkedNumber(text)){
+                    result.innerText = text;
+                }
+                else{
+                    alert("请必须输入数字")
+                }
+            }
+*/
+        list[1].onclick = function(){
+            var si1value = Number(input1.value);
+            var si2value = Number(input2.value);
+            if(!checkedNumber(si1value)||!checkedNumber(si2value)){
+                alert("请必须输入数字");
+                return;
+            }
+                result.innerText = "答案是" + si1value.toFixed(si2value)
+            }
+
+        list[2].onclick = function(){
+            var text = choosenumber();
+            if(!checkedNumber(text)){
+                console.log("请输入有效的数字")
+            }
+            else{
+                result.innerText = "答案是" + Math.abs(text)
+            }
+        }
+
+        list[3].onclick = function(){
+            var text = choosenumber();
+                if(!checkedNumber(text)){
+                    alert("请必须输入数字")
+                }
+            else{
+                result.innerText = "答案是" + Math.ceil(text)
+                }
+            }
+        list[4].onclick = function(){
+            var text = choosenumber();
+            if(!checkedNumber(text)){
+                alert("请必须输入数字")
+            }
+            else{
+                result.innerText = Math.floor(text)
+            }
+        }
+        list[5].onclick = function(){
+            var text = choosenumber();
+            if(!checkedNumber(text)){
+                alert("请输入数字好吗")
+            }
+            result.innerText = "答案是" + Math.round(text);
+        }
+        list[6].onclick = function(){
+            var value1 = Number(input1.value);
+                value2 = Number(input2.value);
+            if(!checkedNumber||!checkedNumber){
+                alert("请输入数字！两边都要！")
+            }
+            else{
+                var valuemost = function(number1,number2){
+                    if(number1 < number2){
+                        return number2;
+                    }
+                    if(number1 > number2){
+                        return number1;
+                    }
+                }
+                result.innerText = Number(valuemost(value1,value2))
+                }
+            }
+        list[7].onclick = function(){
+            var value1 = Number(input1.value);
+                value2 = Number(input2.value);
+            if(!checkedNumber||!checkedNumber){
+                alert("请输入数字！两边都要！")
+            }
+            else{
+                var valuemost = function(number1,number2){
+                    if(number1 < number2){
+                        return number1;
+                    }
+                    if(number1 > number2){
+                        return number2;
+                    }
+                }
+                result.innerText = Number(valuemost(value1,value2))
+                }
+            }
+
+
+
+
+
+
+
+        function checkedNumber(number){
+            if((number=="" || number == null )){
+            return false;
+            }
+            else if (!isNaN(number)||number == 0) {
+            return true;
+            }
+
+        }
+        function choosenumber(){
+            if( labels1.checked|| labels2.checked){
+                if(labels1.checked){
+                    text = input1.value;
+                    return text;
+                }
+                if(labels2.checked){
+                text = input2.value;
+                return text;
+                }
+            }
+        }
+
+
+
+
+</script>
+</body>

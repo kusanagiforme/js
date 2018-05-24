@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<script>
+var tree = {
+    "id": 0,
+    "name": "root",
+    "left": {
+        "id": 1,
+        "name": "Simon",
+        "left": {
+            "id": 3,
+            "name": "Carl",
+            "left": {
+                "id": 7,
+                "name": "Lee",
+                "left": {
+                    "id": 11,
+                    "name": "Fate"
+                }
+            },
+            "right": {
+                "id": 8,
+                "name": "Annie",
+                "left": {
+                    "id": 12,
+                    "name": "Saber"
+                }
+            }
+        },
+        "right": {
+            "id": 4,
+            "name": "Tony",
+            "left": {
+                "id": 9,
+                "name": "Candy"
+            }
+        }
+    },
+    "right": {
+        "id": 2,
+        "name": "right",
+        "left": {
+            "id": 5,
+            "name": "Carl",
+        },
+        "right": {
+            "id": 6,
+            "name": "Carl",
+            "right": {
+                "id": 10,
+                "name": "Kai"
+            }
+        }
+    }
+}
+
+var fbianlilist = [];
+var mbianlilist = [];
+var lbianlilist = [];
+
+// 假设id和name均不会重复，根据输入name找到对应的id
+function findIdByName(name) {
+    var id;
+    //使用前序遍历来先检索左子树，再检索右子树；
+    //在程序内使用递归的方式检索。
+    function checknodeid(node){
+        if(node != null){
+            if(node.name == name){
+                    id = node.id;
+            }
+        checknodeid(node.left);
+        checknodeid(node.right);
+        }
+    checknodeid(tree);
+    return id;
+    }
+}
+
+
+
+
+// 假设id和name均不会重复，根据输入id找到对应的name
+function findNameById(id) {
+    var name;
+    function checkedNumber(){
+        if(node!=null){
+            if(node.id == id){
+                name = node.name;
+                }
+        checkedNumber(node.left);
+        checkedNumber(node.right);
+        }
+    }
+}
+
+// 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
+function getListWithDLR() {
+//前序遍历，指的是在其左右子树便利之前进行的对节点的访问，遍历从根节点开始；
+    var name;
+    function checkedname(){
+        if(node!=null){
+            fbianlilist.push(node.name);
+            //遍历中将代码推入事先定义的数组中，显示的数据将呈现出先序遍历的二叉树结构
+            checkedname(node.left);
+            checkedname(node.right);
+        }
+    }
+    checkedname(tree);
+    console.log(fbianlilist);
+}
+
+// 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
+function getListWithLDR() {
+    function checkedname(){
+        if(node!=null){
+            checkedname(node.left);
+            mbianlilist.push(node.name);
+            //遍历中先访问左节点，直所有左节点都被访问后才访问上一级节点，接下来开始访问右节点，直到所有右节点都被访问后才访问上级节点，接下来访问这个节点的右节点，以此类推
+            checkedname(node.right);
+        }
+    }
+    checkedname(tree);
+    console.log(mbianlilist);
+}
+
+// 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
+function getListWithLRD() {
+    function checkedname(){
+        if(node!=null){
+            //和中序遍历是类似的，不过这次是在访问所有的左右节点以后才会访问上级节点。以此类推
+            checkedname(node.left);
+            checkedname(node.right);
+            lbianlilist.push(node.name);
+        }
+    }
+    checkedname(tree);
+    console.log(lbianlilist);
+}
+
+</script>
+</body>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<script>
+//var arr = [43, 54, 4, -4, 84, 100, 58, 27, 140]
+var arr = [44,12,59,36,62,43,94,7,35,52,85]
+//使用冒泡排序
+function swap(a,b){
+	var temp =a;
+	a =b;
+	b = temp;
+}
+/*function maopao(array){
+	var N = arr.length;
+	for(var p = 0 ; p <= N-1 ; p++){
+		for(var i = p+1 ; i < N ; i++){
+			var cur = array[p];
+				if(cur > array[i]){
+					var index = array[i];
+					array[i] = cur;
+					array[p] = index;
+				}
+			}
+			console.log("shuchu");
+		}
+	console.log(array);
+}*/
+//这是从网上看来得冒泡算法，和下面在书上看的有点不一样
+
+function maopao(array){
+	var N = arr.length;
+	for( var p = N-1; p>=0;p--){
+		for(i=0;i<p;i++){
+			var cur = array[i];
+			if(cur > array[p]){
+				var index = array[p];
+				array[p] = cur;
+				array[i] = index;
+			}
+
+		}
+	}
+	console.log(array);
+}
+maopao(arr);
+
+//使用JS 阮一峰快速排序实现步骤
+function quicksort(array){
+//先获取中间值;
+	var middle = Math.floor(arr.length/2);
+	var pivot = arr.splice(middle,1);
+//将获取的值塞入两个子集；这里并不会影响
+	var left = [];
+	var right = [];
+//循环并在子集中寻找合适条件后并puh
+	for(var i =0 ; i < arrat.length ; i++ ){
+		if(arrar.[i]<pivot){
+			left.push(array[i])
+		}
+		else{
+			right.push(array[i])
+		}
+//递归调用函数并集合
+		return quicksort(left).concat([pivot],quicksort(right));
+	}
+
+}
+
+
+//使用标准版快速排序来实现；
+function quicksort1(){
+	//定义一个交换程序-【】
+	function swap(array,a,b){
+		const temp = array[a];
+		array[a] = array[b];
+		array[b] = temp;
+	}
+	fun
+
+
+
+	}
+
+
+
+</script>
+</body>

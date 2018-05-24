@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<input id="queue-input" type="text">
+<p id="queue-cont">队列内容：apple&lt;-pear</p>
+<button id="in-btn">入队</button>
+<button id="out-btn">出队</button>
+<button id="font-btn">打印队头元素内容</button>
+<button id="empty-btn">判断队列是否为空</button>
+
+<script>
+
+var queue = ["apple", "pear"];
+
+var input1= document.getElementById("queue-input");
+var result = document.getElementById("queue-cont");
+var inbtn = document.getElementById("in-btn");
+var outbtn = document.getElementById("out-btn");
+var fontbtn = document.getElementById("font-btn");
+var emptybtn = document.getElementById("empty-btn");
+inbtn.addEventListener("click",function(){test('in')});
+outbtn.addEventListener("click",function(){test('out')});
+fontbtn.addEventListener("click",function(){test("font")});
+emptybtn.addEventListener("click",function(){test("empty")});
+
+
+var test = function (mode){
+	var value = input1.value;
+	switch (mode) {
+		case "in":
+		queue.unshift(input1.value);
+		var quelist = queue.join('->');
+		result.innerText = quelist;
+		break;
+
+		case 'out':
+	 	queue.pop();
+		console.log(queue.length);
+		var	quelist = queue.join('->');
+		result.innerText = quelist;
+		break;
+
+		case "font":
+		if(queue.length ==0){
+			console.log("无");
+		}
+		var font = queue[queue.length-1];
+		result.innerText = font;
+		break;
+
+		case "empty":
+		if(queue.length == 0){
+			console.log('无')
+		}
+		else{
+			console.log("有")
+		}
+		break;
+	}
+
+}
+
+</script>
+</body>

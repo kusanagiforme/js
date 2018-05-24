@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<script>
+/*
+实现一个字符串头尾去除空格的函数
+注意需要去除的空格，包括全角、半角空格
+暂时不需要学习和使用正则表达式的方式
+*/
+
+
+function diyTrim(str) {
+	var result = "";
+	var strcount = str.split('');
+	while(strcount[0]=== ' ' || strcount[0] === '　'){
+		strcount.shift();
+	}
+	//while(strList[0] === ' ' || strList[0] === '　') {
+    //    strList.shift();
+    //}
+
+
+	while(strcount[strcount.length-1] == " "||strcount[strcount.length-1]=="  "){
+		strcount.pop();
+	}
+	for(var i = 0 ; i < strcount.length ; i++){
+		result += strcount[i];
+	}
+	return result
+	}
+
+/*	我真的是蠢，没想到还有可以将字符串转换为数组，然后依次对比第一个和最后一个
+进行删减操作；不需要for循环也可以进行数组的依次遍历；我的方法总是溢出太多次，我也没弄懂
+到底在哪里出了错；
+*/
+
+	/*for(var n=i;n>0;n--){
+		if(str.charAt(n)==" "){
+			str = str.slice(i,0);
+			}
+		if(str.charAt(n)!==" "){
+			str = str.slice(i,0);
+			}
+		}*/
+
+
+
+// 测试用例
+console.log(diyTrim(' a f b    ')); // ->a f b
+console.log(diyTrim('    ffdaf    ')); // ->ffdaf
+console.log(diyTrim('1    ')); // ->1
+console.log(diyTrim('　　f')); // ->f
+console.log(diyTrim('  　  a f b 　　 ')); // ->a f b
+console.log(diyTrim(' ')); // ->
+console.log(diyTrim('　')); // ->
+console.log(diyTrim('')); // ->
+
+/*
+去掉字符串str中，连续重复的地方
+*/
+
+
+
+
+function removeRepetition(str){
+    var result = "";
+    // do something
+	str = diyTrim(str);
+	var strcount = str.split("");
+	var  len = strcount.length;
+	for(var i=0;i<len;i++){
+		var j = i +1;
+		while( strcount[i] == strcount[j]){
+			strcount[j]=="";
+			j++;
+		}
+	}
+	for(let n = 0;n<str.length;n++){
+		var result="";
+		result += strcount[n];
+		}
+    return result;
+	}
+
+/*
+fcuntion(str){
+var str = str.diyTrim();
+var strlist = str.split("");
+var length = strlist.length;
+	for(let i = 0; i<length; i++){
+		let j = i+1;
+		while(strlist[i]==strlist[j]){
+		strlist[j]=="";
+		j++;
+	}
+}
+	for(let n = o;n<str.length;n++){
+	var result="";
+	result += strcount[n];
+}
+}
+*/
+
+
+// 测试用例
+console.log(removeRepetition("aaa")); // ->a
+console.log(removeRepetition("abbba")); // ->aba
+console.log(removeRepetition("aabbaabb")); // ->abab
+console.log(removeRepetition("")); // ->
+console.log(removeRepetition("abc")); // ->abc
+
+</script>
+</body>
