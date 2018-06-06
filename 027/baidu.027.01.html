@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Code3</title>
+</head>
+
+<body>
+    <p id="result"></p>
+    <script type="text/javascript" charset="utf-8">
+    // 完成上面需求后，现在需求做一些小的变更
+    // 输出格式变为：2008-10-10 Monday 07:10:30 PM
+    var result = document.querySelector("#result");
+    function getThenShowTime() {
+        var currentDate = new Date();
+        var currentYear = currentDate.getFullYear();
+        var currentMonth = transferToTheRightFormat((currentDate.getMonth() + 1));
+        var currentDay = transferToTheRightFormat(currentDate.getDate());
+        var weekDay = transferToTheRightFormat(currentWeekDayInEng(currentDate));
+        var currentHour = transferToTheRightFormat((currentDate.getHours() - 12));
+        var currentMin = transferToTheRightFormat(currentDate.getMinutes());
+        var currentSec = transferToTheRightFormat(currentDate.getSeconds());
+        var morningOrAfternoon = getCurrentHour(currentDate);
+        result.innerHTML = currentYear + "-" + currentMonth + "-" + currentDay + " " + weekDay + " " + currentHour + " : " + currentMin + " : " + currentSec + " " + morningOrAfternoon;
+    }
+    function transferToTheRightFormat(data) {
+        if (data < 10) {
+            return "0" + data
+        } else {
+            return data;
+        }
+    }
+    function currentWeekDayInEng(time) {
+        var weekDay;
+        switch (time.getDay()) {
+            case 0:
+                weekDay = "Sunday";
+                break;
+            case 1:
+                weekDay = "Monday";
+                break;
+            case 2:
+                weekDay = "Tuesday";
+                break;
+            case 3:
+                weekDay = "Wednesday";
+                break;
+            case 4:
+                weekDay = "Thursday";
+                break;
+            case 5:
+                weekDay = "Friday";
+                break;
+            case 6:
+                weekDay = "Saturday";
+                break;
+        }
+        return weekDay;
+    }
+    function getCurrentHour(hours) {
+        var hour = hours.getHours();
+        if (hour >= 12) {
+            return "PM"
+        } else {
+            return "AM"
+        }
+    }
+    (function() {
+        setInterval(getThenShowTime, 1000);
+    })();
+    </script>
+</body>
+
+</html>

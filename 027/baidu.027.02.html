@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Code5</title>
+</head>
+
+<body>
+    <select id="year-select">
+        <option value="2014" selected="selected">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+    </select>
+    <select id="month-select">
+        <option value="1" selected="selected">1</option>
+    </select>
+    <select id="day-select">
+        <option value="1" selected="selected">1</option>
+    </select>
+    <select id="hour-select">
+        <option value="0" selected="selected">0</option>
+    </select>
+    <select id="minite-select">
+        <option value="0" selected="selected">0</option>
+    </select>
+    <select id="second-select">
+        <option value="0" selected="selected">0</option>
+    </select>
+    <p id="result-wrapper"></p>
+    <script type="text/javascript" charset="utf-8">
+    // 现在我们要做一个稍微复杂的东西，如下HTML，有一堆Select用于选择日期和时间，在选择后，实时在 id 为 result-wrapper 的 p 标签中显示所选时间和当前时间的差值。
+    // 使用上方的HTML结构（可以根据需要自行微调）为基础编写JavaScript代码
+    // 当变更任何一个select选择时，更新 result-wrapper 的内容
+    // 当所选时间早于现在时间时，文案为 现在距离 "所选时间" 已经过去 xxxx
+    // 当所选时间晚于现在时间时，文案为 现在距离 "所选时间" 还有 xxxx
+    // 注意当前时间经过所选时间时候的文案变化
+    // 注意选择不同月份的时候，日期的可选范围不一样，比如1月可以选31天，11月只有30天，注意闰年
+    // 同样，需要注意，通过优雅的函数封装，使得代码更加可读且可维护
+    // 现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒
+    var selectedYear = document.querySelector("#year-select").querySelector("option[selected]").value;
+    var selectedMonth = document.querySelector("#month-select").querySelector("option[selected]").value;
+    var selectedDay = document.querySelector("#day-select").querySelector("option[selected]").value;
+    var selectedHour = document.querySelector("#hour-select").querySelector("option[selected]").value;
+    var selectedMinite = document.querySelector("#minite-select").querySelector("option[selected]").value;
+    var selectedSecond = document.querySelector("#second-select").querySelector("option[selected]").value;
+    // var timeArr = [selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinite, selectedSecond];
+    var resultWrapper = document.querySelector("#result-wrapper");
+    var t = setInterval(function() {
+        updateContext(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinite, selectedSecond);
+    }, 1000);
+    // 取得所有下拉列表
+    var allSelect = document.querySelectorAll("select");
+    allSelect[0].addEventListener("change", function(e) {
+        clearInterval(t);
+        selectedYear = e.target.value;
+        createEachMonthDay(selectedYear, selectedMonth);
+        t = setInterval(function() {
+            updateContext(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinite, selectedSecond);
+        }, 1000);
+    });
+    // 取得选择的月份
+    allSelect[1].addEventListener("change", function(e) {
+        clearInterval(t);
+        selectedMonth = e.target.value;
+        createEachMonthDay(selectedYear, selectedMonth);
+        t = setInterval(function() {
+            updateContext(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinite, selectedSecond);
+        }, 1000);
+    })
+    allSelect[2].addEventListener("change", function(e) {
+        clearInterval(t);
+        selectedDay = e.target.value;
+        // createEachMonthDay(selectedYear, selectedMonth);
+        t = setInterval(function() {
+            updateContext(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinite, selectedSecond);
+        }, 1000);
+    })
+    allSelect[3].addEventListener("change", function(e) {
+        clearInterval(t);
+        selectedHour = e.target.value;
+        // createEachMonthDay(selectedYear, selectedMonth);
+        t = setInterval(function() {
+            updateContext(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinite, selectedSecond);
+        }, 1000);
+    })
+    allSelect[4].addEventListener("change", function(e) {
+        clearInterval(t);
+        selectedMinite = e.target.value;
+        // createEachMonthDay(selectedYear, selectedMonth);
+        t = setInterval(function() {
+            updateContext(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinite, selectedSecond);
+        }, 1000);
+    })
+    allSelect[5].addEventListener("change", function(e) {
+        clearInterval(t);
+        selectedSecond = e.target.value;
+        // createEachMonthDay(selectedYear, selectedMonth);
+        t = setInterval(function() {
+            updateContext(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinite, selectedSecond);
+        }, 1000);
+    });
+    for (var i = 0; i < allSelect.length; i++) {
+        allSelect[i].addEventListener("change", function(e) {
+            var changeData = e.target.value;
+            updateContext(changeData);
+        })
+    }
+    function updateContext(year, month, day, hour, minite, sec) {
+        var selectedTime = new Date(year, month - 1, day, hour, minite, sec);
+        var nowTime = new Date();
+        var secGap = selectedTime.getTime() - nowTime.getTime();
+        if (secGap < 0) {
+            secGap = -secGap;
+            var dayGap = Math.floor(secGap / (1000 * 60 * 60 * 24));
+            var hoursGap = Math.floor((secGap - (dayGap * 1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minGap = Math.floor((secGap - (dayGap * 1000 * 60 * 60 * 24) - (hoursGap * 1000 * 60 * 60)) / (1000 * 60));
+            var secGap = Math.floor((secGap - (dayGap * 1000 * 60 * 60 * 24) - (hoursGap * 1000 * 60 * 60) - (minGap * 1000 * 60)) / 1000);
+            resultWrapper.innerHTML = "现在距离" + year + "年" + month + "月" + day + "日 " + hour + ":" + minite + ":" + sec + " 已经过去 " + dayGap + " 天 " + hoursGap + " 小时 " + minGap + " 分 " + secGap + " 秒";
+        } else if (secGap > 0) {
+            var dayGap = Math.floor(secGap / (1000 * 60 * 60 * 24));
+            var hoursGap = Math.floor((secGap - (dayGap * 1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minGap = Math.floor((secGap - (dayGap * 1000 * 60 * 60 * 24) - (hoursGap * 1000 * 60 * 60)) / (1000 * 60));
+            var secGap = Math.floor((secGap - (dayGap * 1000 * 60 * 60 * 24) - (hoursGap * 1000 * 60 * 60) - (minGap * 1000 * 60)) / 1000);
+            resultWrapper.innerHTML = "现在距离" + year + "年" + month + "月" + day + "日 " + hour + ":" + minite + ":" + sec + " 还有 " + dayGap + " 天 " + hoursGap + " 小时 " + minGap + " 分 " + secGap + " 秒";
+        }
+    }
+    // var t = setInterval(function() {
+    //     updateContext(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinite, selectedSecond);
+    // }, 1000);
+    // updateContext(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinite, selectedSecond);
+    // createEachMonthDay(selectedYear, selectedMonth);
+    window.addEventListener("load", function() {
+        init();
+        createEachMonthDay(selectedYear, selectedMonth);
+        // var t = setInterval(function() {
+        //     updateContext(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinite, selectedSecond);
+        // }, 1000);
+    });
+    // 初始化函数
+    function init() {
+        // 生成固定的月时分秒
+        var monthSelect = document.querySelector("#month-select");
+        var hourSelect = document.querySelector("#hour-select");
+        var miniteSelect = document.querySelector("#minite-select");
+        var secondSelect = document.querySelector("#second-select");
+        for (var i = 2; i <= 12; i++) {
+            var addOption = document.createElement("option")
+            addOption.setAttribute("value", i);
+            addOption.textContent = i;
+            monthSelect.appendChild(addOption);
+        }
+        for (var i = 1; i < 24; i++) {
+            var addOption = document.createElement("option")
+            addOption.setAttribute("value", i);
+            addOption.textContent = i;
+            hourSelect.appendChild(addOption);
+        }
+        for (var i = 1; i < 60; i++) {
+            var addOption = document.createElement("option")
+            addOption.setAttribute("value", i);
+            addOption.textContent = i;
+            miniteSelect.appendChild(addOption);
+        }
+        for (var i = 1; i < 60; i++) {
+            var addOption = document.createElement("option")
+            addOption.setAttribute("value", i);
+            addOption.textContent = i;
+            secondSelect.appendChild(addOption);
+        }
+    }
+    // 动态生成日子
+    function createEachMonthDay(year, month) {
+        var daySelect = document.querySelector("#day-select");
+        var leapYear = leapYearOrNot(year);
+        // var daySelect = document.querySelector("#day-select");
+        if (!(daySelect.lastElementChild == null)) {
+            while (daySelect.lastElementChild.selected == false) {
+                daySelect.removeChild(daySelect.lastElementChild);
+            }
+        }
+        if (month == "2" && leapYear) {
+            for (var i = 2; i < 30; i++) {
+                var addOption = document.createElement("option")
+                addOption.setAttribute("value", i);
+                addOption.textContent = i;
+                daySelect.appendChild(addOption);
+            }
+        } else if (month == "2") {
+            for (var i = 2; i < 29; i++) {
+                var addOption = document.createElement("option")
+                addOption.setAttribute("value", i);
+                addOption.textContent = i;
+                daySelect.appendChild(addOption);
+            }
+        } else if (month == "1" || month == "3" || month == "5" || month == "7" || month == "8" || month == "10" || month == "12") {
+            for (var i = 2; i < 32; i++) {
+                var addOption = document.createElement("option")
+                addOption.setAttribute("value", i);
+                addOption.textContent = i;
+                daySelect.appendChild(addOption);
+            }
+        } else {
+            for (var i = 2; i < 31; i++) {
+                var addOption = document.createElement("option")
+                addOption.setAttribute("value", i);
+                addOption.textContent = i;
+                daySelect.appendChild(addOption);
+            }
+        }
+        // 是否闰年
+        function leapYearOrNot(year) {
+            // year % 100 == 0; false
+            // year%4 ==0; false
+            if (year % 400 == 0) {
+                return true;
+            } else if (year % 4 == 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+    </script>
+</body>
+
+</html>
