@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>28_30</title>
+  <style>
+  </style>
+</head>
+ <body>
+	 <div class="wrapper">
+	     <input id="email-input" type="text">
+	     <ul id="email-sug-wrapper" class="email-sug"></ul>
+	 </div>
+<script>
+
+var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+var input = document.getElementById('email-input');
+var sug = document.getElementById('email-sug-wrapper');
+input.oninput = function(){
+	//控制email-sug-wrapper的显示状态
+	toggle();
+	reset();
+}
+
+function getvalue(){
+	return input.value.trim()
+}
+
+//将提示框第一个显示颜色
+function reset(){
+		   let li = sug.querySelectorAll('li');
+		   for(let i = 0; i < li.length; i++){
+			   li[i].className = ''
+		   }
+		   li[0].className = 'bgColor'
+		   console.log(li)
+	   }
+
+function getitem(){
+	let value =getvalue();
+	let index = value.indexOf('@');
+	//若有输入，则将@前部分的分割开
+	if(index>-1){
+		value = getvalue().slice(0,index);
+	}
+	let html = [];
+	//根据用户输入来动态生成提示框的内容
+	postfixList.forEach((i=>{
+			html.push('<li>'+value+'@'+i+'</li>')
+		})
+		sug.innerHTML = html.join('');
+	)
+}
+function hidden(){
+	sug.style.display = 'none'
+}
+function display(){
+	sug.style.display = 'block'
+}
+//根据情况控制提示框的出现与否
+function toggle(){
+	let value = getvalue();
+	if(value === ''){
+		hidden()
+	}
+	else{
+		display()
+		getitem()
+	}
+}
+//遍历寻找是否有添加了classname的li标签
+function findeIndex(){
+	let index = 0;
+	let li = sug.querySelectorAll('li');
+	for(let i =0 ; i < li.length;i++){
+		if(li[i].className == 'bgcolor'){
+			index = 1
+		}
+	}
+	return index
+}
+//点击事件
+sug.onclick = function(e){
+	var e = e||window.event;
+	//兼容性ie的选择
+	var target = e.targe||e.srcElement;
+	if(target.nodename.toLowercase === 'li'){
+		input.value = target.innerText;
+		hidden();
+		console.log(e.target.innerText)
+	}
+}
+//键盘输入事件
+input.onkeyup = function(e){
+            let index = findIndex();
+            let li = sug.querySelectorAll('li');
+            if ( e.keyCode == 13 || e.keyCode == 38 || e.keyCode == 40){
+                for(let i = 0; i < li.length; i++){
+                    li[i].className = ''
+                }
+            }
+
+            console.log(e.keyCode)
+//键盘上的下键
+			if(e.keyCode == 38){
+                if(index != 0){
+                    li[index -1].className = 'bgColor'
+                }else {
+                    li[li.length -1].className = 'bgColor'
+                }
+            }
+//键盘上的上键
+			else if(e.keyCode == 40) {
+                if(index != li.length-1){
+                    li[index+1].className = 'bgColor'
+                }else {
+                    li[0].className = 'bgColor'
+                }
+            }
+//键盘的回车键
+			else if(e.keyCode == 13){
+                input.value = li[index].innerText
+                hidden()
+            }
+        }
+
+</script>
+ </body>
